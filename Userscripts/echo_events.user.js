@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         Events Modifier
-// @version      1.0
+// @name         Torn Event Modifier
+// @version      0.1
 // @description  Tweak Events Page
 // @author       echoblas53[1934501]
 // @match        https://www.torn.com/events.php
