@@ -14,7 +14,7 @@
             if (regex.test($(obj).text())) {
                 var arr = regex.exec($(obj).text());
                 var calc = parseInt(arr[2].replace(/,/g, ''))/parseInt(arr[1].replace(/,/g, ''));
-                $(obj).attr("title","(worth $" + Math.ceil(calc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " each)");
+                $(obj).attr("title","(worth $" + Math.floor(calc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " each)");
             }
         },
         regex: [
