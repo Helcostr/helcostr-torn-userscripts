@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Event Modifier
-// @version      0.1
+// @version      0.2
 // @description  Tweak Events Page
 // @author       echoblas53[1934501]
 // @match        https://www.torn.com/events.php
@@ -9,15 +9,25 @@
 
 (function() {
     'use strict';
+    const search = {
+        func: (obj,regex) => {
+            if (regex.test($(obj).text())) {
+                var arr = regex.exec($(obj).text());
+                var calc = parseInt(arr[2].replace(/,/g, ''))/parseInt(arr[1].replace(/,/g, ''));
+                $(obj).attr("title","(worth $" + Math.ceil(calc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " each)");
+            }
+        },
+        regex: [
+            /.* bought ([0-9,]+) x .* from your bazaar for \$([0-9,]+)\./,
+            /([0-9,]+) shares in [A-Z]+ have been sold for \$([0-9,]+)\. You can withdraw your check from the bank, or wait for it to be credited to your account in 24 hours\./
+        ]
+    };
     $(document).ajaxComplete((e,x,s) => {
         if (s.url.search("events.php") != -1) {
-            $(".mail-link").each((e,t)=>{
-                var regex = /.* bought (\d*) x .* from your bazaar for \$([0-9,]+)./;
-                if (regex.test($(t).text())) {
-                    var arr = regex.exec($(t).text());
-                    var calc = parseInt(arr[2].replace(/,/g, ''))/parseInt(arr[1].replace(/,/g, ''));
-                    $(t).attr("title","(worth $" + calc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " each)");
-                }
+            $(".mail-link").each((i,obj)=>{
+                search.regex.forEach((regex) => {
+                    search.func(obj,regex);
+                });
             });
         }
     });
