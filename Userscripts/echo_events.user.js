@@ -20,7 +20,7 @@
         regex: [
             /.* bought ([0-9,]+) x .* from your bazaar for \$([0-9,]+)\./,
             /([0-9,]+) shares in [A-Z]+ have been sold for \$([0-9,]+)\. You can withdraw your check from the bank, or wait for it to be credited to your account in 24 hours\./,
-            /.* bought ([0-9,]+) x .* of your points that were on the market for \$([0-9,]+)\./
+            /.* bought ([0-9,]+) of your points that were on the market for \$([0-9,]+)\./
         ]
     };
     $(document).ajaxComplete((e,x,s) => {
