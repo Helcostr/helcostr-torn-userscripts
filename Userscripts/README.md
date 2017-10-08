@@ -1,4 +1,6 @@
 # Changelog:
+* v0.3
+  * Add Points calculation
 * v0.2
   * Streamlines function
   * Floor Round output
