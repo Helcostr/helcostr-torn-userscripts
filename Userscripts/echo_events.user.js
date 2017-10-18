@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Event Modifier
-// @version      0.3
+// @version      0.4b
 // @description  Tweak Events Page
 // @author       echoblas53[1934501]
 // @match        https://www.torn.com/events.php
@@ -25,7 +25,31 @@
     };
     $(document).ajaxComplete((e,x,s) => {
         if (s.url.search("events.php") != -1) {
-            $(".mail-link").each((i,obj)=>{
+            var arr_obj = [];
+            $(".mail-link").each((i,obj) => {
+                arr_obj.push(obj);
+            });
+            arr_obj.reverse();
+            for (var i = 0; i < arr_obj.length-1; i++) {
+                var obj1 = $(arr_obj[i]).clone();
+                obj1.find(".echcount").remove();
+                if (obj1.text() == $(arr_obj[i+1]).text()) {
+                    var time;
+                    if ($(arr_obj[i]).parent().find(".echcount").length === 0){
+                        $(arr_obj[i+1]).append('<span class="echcount" data-value="2">x2 </span>');
+                        time = $(arr_obj[i]).parent().find(".date-time");
+                        $(arr_obj[i+1]).parent().find(".date-time").after(time);
+                    } else {
+                        var value = $(arr_obj[i]).find(".echcount").data("value");
+                        $(arr_obj[i+1]).append('<span class="echcount" data-value="' + (++value) + '">x' + value + ' </span>');console.warn("No");
+                        time = $(arr_obj[i]).parent().find(".date-time")[1];
+                        $(arr_obj[i+1]).parent().find(".date-time").after(time);
+                    }
+                    $(arr_obj[i]).parent().parent().parent().remove();
+                    $(arr_obj[i+1]).parent().find(".mail-action-icon").remove();
+                }
+            }
+            $(".mail-link").each((i,obj) => {
                 search.regex.forEach((regex) => {
                     search.func(obj,regex);
                 });
