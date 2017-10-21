@@ -10,12 +10,6 @@
 
 (()=>{
 	"use strict";
-	const curr_ver = 1.1;
-	//Reseting with new version
-	if (GM_getValue("version","1.0") < curr_ver) {
-		GM_setValue("version",curr_ver);
-		GM_setValue("history","{}");
-	}
 	$(document).ready(()=>{
 		$(document).ajaxComplete((event,xhr,settings) => {
 			if (settings.url.search("properties.php") != -1 && window.location.href.search("tab=vault") != -1) {
