@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Property Vault Tracker
-// @version      1.1
+// @version      1.2
 // @description  Infinitly Increase Memory of Vault
 // @author       Echoblast53
 // @match        https://www.torn.com/properties.php
@@ -18,7 +18,8 @@
 				} catch (err) {
 					$(".vault-trans-wrap .title-black").append($('<button title="Remove Corrupted Data">Purge</button>').click(()=>{
 						purge();
-					}))
+					}));
+					preLoad();
 					onLoad();
 					clear();
 					display();
@@ -26,6 +27,14 @@
 			}
 		});
 	});
+	let imgArch = {};
+	function preLoad() {
+		$(".user img").each((i,e)=>{
+			let imgExp = $(e).attr("src").match(/awardimages\.torn\.com\/(\d+)-(\d+)/);
+			if (typeof imgArch[imgExp[1]] === 'undefined')
+				imgArch[imgExp[1]] = imgExp[2];
+		});
+	}
 	function onLoad() {
 		var history = JSON.parse(GM_getValue("history","{}"));
 		$(".transaction").each((i,e)=>{
@@ -35,8 +44,12 @@
 				var date = Date.UTC(day[1],day[2]-1,day[3],time[1],time[2],time[3]);
 				if (typeof history[date] === 'undefined')
 					history[date] = {
-						username: $.trim($($(e).find(".user a")[0]).text()),
-						userlink: $($(e).find(".user a")[0]).attr("href"),
+						username: (()=>{
+							if ($(e).find(".user a img").length > 0)
+								return $(e).find(".user a img").attr("alt").match(/(.+) \[\d+\]/)[1];
+							return $.trim($($(e).find(".user a")[0]).text());
+						})(),
+						uid: $($(e).find(".user a")[0]).attr("href").match(/XID=(\d+)/)[1],
 						type: $.trim($(e).find(".type").text()),
 						amount: $.trim((()=>{
 							var clone = $(e).find(".amount").clone();
@@ -70,7 +83,15 @@
 			if (date.getUTCHours()/12 >= 1)
 				return "PM";
 			return "AM";
-		})()}</span></li><li class="user t-overflow"><span class="t-hide"><a class="user name" href="${obj.userlink}">${obj.username}</a></span><span class="d-hide"><a class="user name" href="${obj.userlink}">${obj.username}</a></span></li><li class="type">${obj.type}</li><li class="amount t-overflow"><span class="type-sign">${obj.type_sign}</span> ${obj.amount}</li><li class="balance t-overflow">${obj.balance}</li><li class="clear"></li></ul></li>`;
+		})()}</span></li><li class="user t-overflow"><span class="t-hide"><a class="user name" href="/profiles.php?XID=${obj.uid}">${(()=>{
+			if (typeof imgArch[obj.uid] !== 'undefined')
+				return `<img src="https://awardimages.torn.com/${obj.uid}-${imgArch[obj.uid]}-large.png" border="0" alt="${obj.username} [${obj.uid}]" title="${obj.username} [${obj.uid}]">`;
+			return obj.username;
+		})()}</a></span><span class="d-hide"><a class="user name" href="/profiles.php?XID=${obj.uid}">${(()=>{
+			if (typeof imgArch[obj.uid] !== 'undefined')
+				return `<img src="https://awardimages.torn.com/${obj.uid}-${imgArch[obj.uid]}-small.png" border="0" alt="${obj.username} [${obj.uid}]" title="${obj.username} [${obj.uid}]">`;
+			return obj.username;
+		})()}</a></span></li><li class="type">${obj.type}</li><li class="amount t-overflow"><span class="type-sign">${obj.type_sign}</span> ${obj.amount}</li><li class="balance t-overflow">${obj.balance}</li><li class="clear"></li></ul></li>`;
 	}
 	function pad(num, size) {
 		var s = num+"";
