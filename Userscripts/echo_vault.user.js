@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Torn Property Vault Tracker
-// @version      1.2
+// @version      1.3b1
 // @description  Infinitly Increase Memory of Vault
 // @author       Echoblast53
 // @match        https://www.torn.com/properties.php
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @grant        GM_deleteValue
 // ==/UserScript==
 
 (()=>{
@@ -99,7 +100,9 @@
 		return s;
 	}
 	function purge() {
-		GM_setValue("history","{}");
-		location.reload();
+		if (confirm("Do you wish to purge all stored data?")) {
+			GM_deleteValue("history");
+			location.reload();
+		}
 	}
 })();
