@@ -72,7 +72,7 @@ function closeGame() {
     $('#wordFixSolve').remove();
 }
 function gameLogic(text) {
-    let ordered = library.map(e => {return { orig: e, sort: e.split('').sort().join('') }});
+    let ordered = library.map(e => {return { orig: e, sort: e.replace(/[^a-zA-Z]/g, "").split('').sort().join('') }});
     let results = ordered.filter(e => e.sort == text.toLowerCase().split('').sort().join('')).map(e => e.orig);
     if (results.length == 0)
         return `Auto send missing word to devs. Good luck with figuring this out :( <img src="https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?report=${text}" height="0" width="0">. Contact me <a href="${contact}">here</a> if this feature is unappreciated <input value="${text}" disabled/>`;
