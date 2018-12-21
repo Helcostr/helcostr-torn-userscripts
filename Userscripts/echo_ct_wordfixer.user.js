@@ -3,7 +3,7 @@
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
 // @author      echoblast53 [1934501], Ahab [1735214]
-// @version     1.3.0
+// @version     1.3.1
 // @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
 // @grant       none
 // @require     https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?script
