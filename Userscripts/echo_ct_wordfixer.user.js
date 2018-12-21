@@ -2,8 +2,8 @@
 // @name        Word Fixer Assist
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
-// @author      Ahab [1735214] echoblast53 [1934501]
-// @version     0.0.2
+// @author      echoblast53 [1934501], Ahab [1735214]
+// @version     1.0.0
 // @grant       none
 // @require     https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?script
 // @run-at      document-start
@@ -12,6 +12,7 @@ const original_fetch = fetch;
 const sleepText = '<font color="gray">Awaiting Word...</font>';
 const contact = 'https://www.torn.com/forums.php#/p=threads&f=67&t=16073974&b=0&a=0'
 let gameStart = false;
+console.log(library);
 
 window.fetch = async (input, init) => {
     const response = await original_fetch(input, init);
@@ -60,7 +61,7 @@ function openGame() {
     `);
 }
 function updateGame(text) {
-    $("#wordFixSolution").text(text);
+    $("#wordFixSolution").html(text);
 }
 function closeGame() {
     gameStart = false;
@@ -70,6 +71,6 @@ function gameLogic(text) {
     let ordered = library.map(e => {return { orig: e, sort: e.split('').sort().join('') }});
     let results = library.filter(e => e.sort == text.toLowerCase().split('').sort().join('')).map(e => e.orig);
     if (results.length == 0)
-        return `Please copy and paste to our <a href="${contact}">devs</a>: <input value="${text}" disabled/>`;
+        return `Auto send missing word to devs. Good luck with figuring this out :( <img src="https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?report=${text}" alt="(Failed to Send)" height="0" width="0">. Contact me <a href="${contact}">here</a> if this feature is unappreciated <input value="${text}" disabled/>`;
     return results;
 }
