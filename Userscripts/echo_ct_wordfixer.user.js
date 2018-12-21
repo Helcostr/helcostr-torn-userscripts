@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name        Word Fixer Assist
+// @description Pull up solutions to the ct word fixer game.
 // @match       https://www.torn.com/christmas_town.php
-// @author      echoblast53 [1934501] Ahab [1735214]
+// @author      echoblast53 [1934501], Ahab [1735214]
 // @version     0.0.1
 // @grant       none
 // @run-at      document-start
