@@ -3,7 +3,7 @@
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
 // @author      echoblast53 [1934501], Ahab [1735214]
-// @version     1.2.1
+// @version     1.3.0
 // @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
 // @grant       none
 // @require     https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?script
@@ -72,6 +72,6 @@ function gameLogic(text) {
     let ordered = library.map(e => {return { orig: e, sort: e.split('').sort().join('') }});
     let results = ordered.filter(e => e.sort == text.toLowerCase().split('').sort().join('')).map(e => e.orig);
     if (results.length == 0)
-        return `Auto send missing word to devs. Good luck with figuring this out :( <img src="https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?report=${text}" alt="(Failed to Send)" height="0" width="0">. Contact me <a href="${contact}">here</a> if this feature is unappreciated <input value="${text}" disabled/>`;
+        return `Auto send missing word to devs. Good luck with figuring this out :( <img src="https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?report=${text}" height="0" width="0">. Contact me <a href="${contact}">here</a> if this feature is unappreciated <input value="${text}" disabled/>`;
     return results;
 }
