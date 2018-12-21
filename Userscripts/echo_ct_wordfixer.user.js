@@ -1,27 +1,27 @@
 // ==UserScript==
 // @name        Word Fixer Assist
-// @description Pull up solutions to the ct word fixer game.
+// @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
-// @author      echoblast53 [1934501], Ahab [1735214]
-// @version     0.0.1
+// @author      Ahab [1735214] echoblast53 [1934501]
+// @version     0.0.2
 // @grant       none
+// @require     https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?script
 // @run-at      document-start
 // ==/UserScript==
 const original_fetch = fetch;
 const sleepText = '<font color="gray">Awaiting Word...</font>';
+const contact = 'https://www.torn.com/forums.php#/p=threads&f=67&t=16073974&b=0&a=0'
 let gameStart = false;
 
 window.fetch = async (input, init) => {
     const response = await original_fetch(input, init);
-
     if (response.url.search('christmas_town.php?') != -1) {
         const clone = response.clone();
         if (response.url.search('q=miniGameAction') != -1)
             clone.json().then(miniGameAction);
-        else
+        else if (gameStart)
             closeGame();
     }
-
     return response;
 }
 
@@ -32,11 +32,11 @@ function miniGameAction(json) {
         if (json.finished)
             updateGame('<font color="gray">What was my purpose?... Oh my god.</font>');
         else if (typeof json.message != "undefined")
-            updateGame('<font color="gray">I hope you enjoy my existance. Leave a comment if you feel like it.</font>');
+            updateGame(`<font color="gray">I hope you enjoy my existance. Leave a <a href="${contact}">comment</a> if you feel like it.</font>`);
         else if (json.success) {
             updateGame(sleepText);
             setTimeout(()=>{
-                updateGame(json.progress.word);
+                updateGame(gameLogic(json.progress.word));
             },5000);
         }
     }
@@ -65,4 +65,11 @@ function updateGame(text) {
 function closeGame() {
     gameStart = false;
     $('#wordFixSolve').remove();
+}
+function gameLogic(text) {
+    let ordered = library.map(e => {return { orig: e, sort: e.split('').sort().join('') }});
+    let results = library.filter(e => e.sort == text.toLowerCase().split('').sort().join('')).map(e => e.orig);
+    if (results.length == 0)
+        return `Please copy and paste to our <a href="${contact}">devs</a>: <input value="${text}" disabled/>`;
+    return results;
 }
