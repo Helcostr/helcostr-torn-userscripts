@@ -3,7 +3,7 @@
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
 // @author      echoblast53 [1934501], Ahab [1735214]
-// @version     1.2.0
+// @version     1.2.1
 // @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
 // @grant       none
 // @require     https://script.google.com/macros/s/AKfycbzwjAoCVLTO43eL-WXHToLLdE4zdFF7DkXfdEBE6X-ZledsobyV/exec?script
@@ -48,7 +48,7 @@ function openGame() {
     gameStart = true;
     $("#christmastownroot").after(`
         <div class="m-top10 m-bottom10" id="wordFixSolve" style="width:324px; float: left; text-transform: capitalize; padding: 7px 0px;">
-            <div aria-level="5" class="title-green top-round" role="heading">
+            <div aria-level="5" class="title-red top-round" role="heading">
                 <i class="ct-christmastown-icon">
                 </i>
                 <span>
