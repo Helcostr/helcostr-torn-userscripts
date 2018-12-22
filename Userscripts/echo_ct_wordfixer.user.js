@@ -41,12 +41,12 @@ function miniGameAction(json,payload) {
         updateGame(gameLogic(json.progress.word));
     }
     if(gameStart == true) {
-        if (json.finished)
-            if (json.success)
+        if (json.finished){
+            if (json.success){
                 updateGame(ping(`solve=${payload.result.word}&user=${getID()}`));
-            updateGame('<font color="gray">What was my purpose?... Oh my god.</font>');
-        else if (typeof json.message != "undefined" && json.message != "game")
-            updateGame(`<font color="gray">I hope you enjoy my existance. Leave a <a href="${contact}">comment</a> if you feel like it.</font>`);
+            updateGame('<font color="gray">What was my purpose?... Oh my god.</font>');}}
+        else if (typeof json.message != "undefined" && json.message != "game"){
+            updateGame(`<font color="gray">I hope you enjoy my existance. Leave a <a href="${contact}">comment</a> if you feel like it.</font>`);}
         else if (json.success) {
             updateGame(sleepText + ping(`solve=${payload.result.word}&user=${getID()}`));
             setTimeout(()=>{
