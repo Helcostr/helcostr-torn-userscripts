@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Word Fixer Assist
-// @description Pull up solutions to the word fixer game. (102 Unique Words)
+// @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
 // @author      echoblast53 [1934501], Ahab [1735214]
 // @version     1.8.1
