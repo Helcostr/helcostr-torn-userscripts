@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Faction Last Active
 // @namespace    namespace
-// @version      0.0.1
+// @version      0.0.2
 // @description  Faction Last Active script written by tos (branch off of 0.8. Source: https://greasyfork.org/en/scripts/370102-faction-last-active)
 // @author       Helcostr
 // @connect      api.torn.com
@@ -44,7 +44,7 @@ if (info_wrap) faction = info_wrap.getAttribute('data-faction')
 
 const get_api = async (fac = faction, key = apiKey) => {
     try {
-        const response = await fetch(`https://api.torn.com/faction/${fac}?selections=basic&key=${key}`);
+        const response = await myFetch(`https://api.torn.com/faction/${fac}?selections=basic&key=${key}`);
         return JSON.parse(response);
     } catch (err) {
         console.warn(err);
