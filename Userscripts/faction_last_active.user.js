@@ -99,6 +99,6 @@ const otherFactionUL = document.querySelector('.f-war-list')
 if (otherFactionUL) {
   add_toggle(otherFactionUL)
 } else {
-  const wrapper = document.document.getElementById('factions')
+  const wrapper = document.getElementById('factions')
   observer.observe(wrapper, { subtree: true, childList: true })
 }
