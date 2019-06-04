@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Torn Vocal Chainerz
-// @version      0.3
+// @version      0.4
 // @description  Speak up when 1 minute is left on the Torn Chain
 // @author       Helcostr
-// @match        https://www.torn.com/factions.php*
+// @match        https://www.torn.com/*
 // @grant        none
 // @run-at      document-start
 // @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_vchain.user.js
@@ -11,6 +11,11 @@
 (function() {
     'use strict';
 
+    setInterval(async ()=>{
+        let time = localStorage.getItem("vc_faction_keepalive");
+        if (time==null || parseInt(time)+10000<(new Date).getTime())
+            speak("Warning");
+    },2500);
     const original_fetch = fetch;
     let warning = false;
     window.fetch = async (input, init) => {
@@ -22,6 +27,7 @@
 
                 clone.json().then((response) => {
                     if (response.wars[0].data.chain.factionID == 8500) {
+                        localStorage.setItem("vc_faction_keepalive",(new Date).getTime());
                         var seconds = response.wars[0].data.chainBar.end;
                         if (seconds < 70) {
                             warning = true;
