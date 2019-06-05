@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Faction Funds Surplus
-// @namespace    http://tampermonkey.net/
-// @version      0.0.1
+// @version      0.0.2
 // @description  Display's faction funds surplus written by nym (branch off of 0.3 https://greasyfork.org/en/scripts/376805-faction-funds-surplus)
 // @author       Helcostr
-// @match        *.torn.com/factions.php*
+// @match        https://www.torn.com/factions.php*
 // @grant        none
+// @run-at      document-start
+// @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/faction_funds_surplus.user.js
 // ==/UserScript==
 
 (() => {
