@@ -58,42 +58,47 @@
 				data:payload
 			}),
 			onload:(r)=>{
-				if (r.success)
-					statusUpdate("Thank you for your contribution.");
-				else {
-					switch(r.error) {
-						case "banned":
-							error(banned(r.reason));
-							break;
-						case "timeout":
-							error(timeout(r.timeout));
-						case "data":
-							error("Critical error (data)");
-							break;
-						case "key":
-							keyIssue("Invalid key. Please check your Key again.");
-							break;
-						case "api":
-							let htmlString = "There is an issue with the API<br>Error:"+r.msg;
-							if (r.timeout > Date.now())
-								htmlString+="<br><br>"+timeout(r.timeout);
-							if (r.banned != "")
-								htmlString+="<br><br>"+banned(r.banned);
-							error(htmlString);
-							break;
-						case "sharing":
-							error("This browser was used for a different user.");
-							break;
-						case "done":
-							error("State error (done).");
-							break;
-						case "password":
-							error("Script error.");
-							break;
-						case "none":
-							error("State error (none).");
-							break;
-					}
+				try {
+					let data = JSON.parse(r.responseText);
+					if (data.success)
+						statusUpdate("Thank you for your contribution.");
+					else {
+						switch(data.error) {
+							case "banned":
+								error(banned(data.reason));
+								break;
+							case "timeout":
+								error(timeout(data.timeout));
+							case "data":
+								error("Critical error (data)");
+								break;
+							case "key":
+								keyIssue("Invalid key. Please check your Key again.");
+								break;
+							case "api":
+								let htmlString = "There is an issue with the API<br>Error:"+data.msg;
+								if (data.timeout > Date.now())
+									htmlString+="<br><br>"+timeout(data.timeout);
+								if (data.banned != "")
+									htmlString+="<br><br>"+banned(data.banned);
+								error(htmlString);
+								break;
+							case "sharing":
+								error("This browser was used for a different user.");
+								break;
+							case "done":
+								error("State error (done).");
+								break;
+							case "password":
+								error("Script error.");
+								break;
+							case "none":
+								error("State error (none).");
+								break;
+						}
+					}	
+				} catch (e) {
+					error(e)
 				}
 			},
 			ontimeout:(r)=>{
