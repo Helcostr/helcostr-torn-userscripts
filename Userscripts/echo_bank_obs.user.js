@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Banking Observer
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_bank_obs.user.js
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @description  Automatically contribute data to track bank APR
@@ -18,14 +18,15 @@
 		$("#HCS_BankOb_Status").html(text)
 	}
 	function error(text) {
-		statusUpdate($(text).append("<br><br>Please contact <a href='https://www.torn.com/messages.php#/p=compose&XID=1934501'>Helcostr</a> for more information, and supply this error message."));
+		statusUpdate(text+"<br><br>Please contact <a href='https://www.torn.com/messages.php#/p=compose&XID=1934501'>Helcostr</a> for more information, and supply this error message.");
 	}
 	function keyIssue(reason) {
-		error($("<span>"+reason+" <input type='text' id='keyIn' value='"+GM_getValue("key","")+"'></span>").append($("<button title='Save API Key'>Save API Key</button>").click(()=>{
+		let issueObj = $("<span>"+reason+" <input type='text' id='keyIn' value='"+GM_getValue("key","")+"'></span>").append($("<button title='Save API Key'>Save API Key</button>").click(()=>{
 			GM_setValue("key",$("#keyIn").val());
 			statusUpdate("API Key saved. Refreshing page.");
 			setTimeout(()=>{location.reload();},3000);
-		})));
+		})).append("<br><br>Please contact <a href='https://www.torn.com/messages.php#/p=compose&XID=1934501'>Helcostr</a> for more information, and supply this error message.");
+        $("#HCS_BankOb_Status").html(issueObj);
 	}
 	function banned(reason) {
 		return 'You have been banned from this service. (Reason:"'+reason+'")'
