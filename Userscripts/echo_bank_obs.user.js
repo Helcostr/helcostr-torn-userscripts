@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Banking Observer
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_bank_obs.user.js
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @description  Automatically contribute data to track bank APR
