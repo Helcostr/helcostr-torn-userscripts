@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.3
+// @version      1.4
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
@@ -23,7 +23,7 @@
                 if (reduct.length != 0) {
                     $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> "+ reduct[0][1] + "<br><br><b>Hint:</b> " + reduct[0][2] +"</span>");
                 } else
-                    $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> Unknown<br><br><b>Hint:</b> Unknown</span>");
+                    $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> ERROR, PLEASE REPORT<br><br><b>Hint:</b> ERROR, PLEASE REPORT</span>");
         });
         locked = false;
     }
