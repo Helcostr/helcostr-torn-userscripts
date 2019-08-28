@@ -86,7 +86,7 @@
         });
         let stor = window.localStorage;
         let test = stor.getItem(key);
-        if (test==null)
+        if (test==null || typeof test == "string")
             sendTo(load).then(e=>{
                 if (e.success) {
                     hint(observer,e.known);
