@@ -117,7 +117,7 @@
 
     const sendTo = load=>{
         return new Promise((res,rej)=>{
-            const url = "https://script.google.com/macros/s/AKfycbyTixZhiTRaBa6qnzTkLUpNL6I6xeCY0xHNeAUSfcA/dev";
+            const url = "https://script.google.com/macros/s/AKfycbzWwniOcp8M1q-3xMhIym-KAw3gJqHSvuObGDkAeHUPbzcTOyg/exec";
             GM_xmlhttpRequest({
                 method:"POST",
                 data:JSON.stringify({
