@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.0
-// @description  This script helps you guess what the potential upcoming mission is.
+// @version      1.1
+// @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
 // @author       Helcostr [1934501]
@@ -75,6 +75,7 @@
             let status = $(e).find(".mission-stamp").attr("class");
             if ($(e).find(".perfect-scrollbar-content .hint").length == 0)
                 load.push({
+                    "User":parseInt(/XID=(\d+)/.exec($("[class^=menu-name]").next().attr("href"))[1]),
                     "Mission Name": titObj.text().trim(),
                     "Difficulty": diff.text().trim(),
                     "Requirements": tasks.join("\n"),
@@ -100,7 +101,7 @@
             sendTo(load).then(e=>{
                 if (e.success) {
                     hint(observer,e.known);
-                    stor.setItem(key,JSON.stringify(test.concat(e.completed)));
+                    stor.setItem(key,JSON.stringify(test.concat(e.completed).filter((e,i,s)=>s.indexOf(e) === i)));
                 } else {
                     error(e);
                 }
