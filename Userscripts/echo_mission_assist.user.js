@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.1
+// @version      1.2
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
@@ -14,16 +14,16 @@
     //FUNCTIONS AWAY FROM THE MAIN BODY OF THE CODE
 
     //Hint Function
-    function hint(observer,known) {
+    function hint(known) {
         $("#missionsMainContainer > .giver-cont-wrap > div[id^=mission]").each((i,e)=>{
             let titObj = $(e).find(".title-black").clone();
             titObj.find(".task-difficulty").remove();
             let reduct = known.filter(e=>e[0]==titObj.text().trim());
             if (reduct.length != 0) {
                 $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> "+ reduct[0][1] + "<br><br><b>Hint:</b> " + reduct[0][2] +"</span>");
-            }
+            } else
+                $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> Unknown<br><br><b>Hint:</b> Unknown</span>");
         });
-        observer.observe(targetNode, config);
     }
     //JQuery Replace Link With (p) text.
     function linkStrip(e) {
@@ -62,18 +62,16 @@
 
     // Callback function to execute when mutations are observed
     const callback = (mutationsList, observer) => {
-        observer.disconnect();
-        observer.takeRecords();
         let focus = $("#missionsMainContainer > .giver-cont-wrap > div[id^=mission]");
         let load = [];
         focus.each((i,e)=>{
-            let titObj = $(e).find(".title-black").clone();
-            let diff = titObj.find(".task-difficulty").remove();
-            let tasks = $(e).find("ul.tasks-list > li").toArray().map((e,i)=> (i+1)+". " + linkStrip(e));
-            let id = $(e).find("input[name=missionID]").attr("value");
-            let flavor = linkStrip($(e).find(".perfect-scrollbar-content"));
-            let status = $(e).find(".mission-stamp").attr("class");
-            if ($(e).find(".perfect-scrollbar-content .hint").length == 0)
+            if ($(e).find(".perfect-scrollbar-content > .hint").length==0) {
+                let titObj = $(e).find(".title-black").clone();
+                let diff = titObj.find(".task-difficulty").remove();
+                let tasks = $(e).find("ul.tasks-list > li").toArray().map((e,i)=> (i+1)+". " + linkStrip(e));
+                let id = $(e).find("input[name=missionID]").attr("value");
+                let flavor = linkStrip($(e).find(".perfect-scrollbar-content"));
+                let status = $(e).find(".mission-stamp").attr("class");
                 load.push({
                     "User":parseInt(/XID=(\d+)/.exec($("[class^=menu-name]").next().attr("href"))[1]),
                     "Mission Name": titObj.text().trim(),
@@ -83,13 +81,19 @@
                     "Status":status?status.replace('mission-stamp','').trim():"intro",
                     "Flavor":flavor
                 });
+            }
         });
         let stor = window.localStorage;
         let test = stor.getItem(key);
-        if (test==null || typeof test == "string")
+        try {
+            test=JSON.parse(test);
+        } catch(e) {
+            test=null;
+        }
+        if (test==null)
             sendTo(load).then(e=>{
                 if (e.success) {
-                    hint(observer,e.known);
+                    hint(e.known);
                     stor.setItem(key,JSON.stringify(e.completed));
                 } else {
                     error(e);
@@ -100,8 +104,8 @@
         else if (load.length > 0)
             sendTo(load).then(e=>{
                 if (e.success) {
-                    hint(observer,e.known);
-                    stor.setItem(key,JSON.stringify(JSON.parse(test).concat(e.completed).filter((e,i,s)=>s.indexOf(e) === i)));
+                    hint(e.known);
+                    stor.setItem(key,JSON.stringify(test.concat(e.completed).filter((e,i,s)=>s.indexOf(e) === i)));
                 } else {
                     error(e);
                 }
@@ -117,6 +121,7 @@
     observer.observe(targetNode, config);
 
     const sendTo = load=>{
+        console.log(load);
         return new Promise((res,rej)=>{
             const url = "https://script.google.com/macros/s/AKfycbzWwniOcp8M1q-3xMhIym-KAw3gJqHSvuObGDkAeHUPbzcTOyg/exec";
             GM_xmlhttpRequest({
@@ -146,5 +151,4 @@
             });
         });
     }
-    callback(null,observer);
 })();
