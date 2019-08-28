@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.2
+// @version      1.3
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
@@ -19,11 +19,13 @@
             let titObj = $(e).find(".title-black").clone();
             titObj.find(".task-difficulty").remove();
             let reduct = known.filter(e=>e[0]==titObj.text().trim());
-            if (reduct.length != 0) {
-                $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> "+ reduct[0][1] + "<br><br><b>Hint:</b> " + reduct[0][2] +"</span>");
-            } else
-                $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> Unknown<br><br><b>Hint:</b> Unknown</span>");
+            if ($(e).find(".perfect-scrollbar-content > .hint").length==0)
+                if (reduct.length != 0) {
+                    $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> "+ reduct[0][1] + "<br><br><b>Hint:</b> " + reduct[0][2] +"</span>");
+                } else
+                    $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> Unknown<br><br><b>Hint:</b> Unknown</span>");
         });
+        locked = false;
     }
     //JQuery Replace Link With (p) text.
     function linkStrip(e) {
@@ -54,14 +56,18 @@
         error("JQuery Missing. This is a critical error");
         return;
     }
-    // Select the node that will be observed for mutations
-    const targetNode = document.getElementById('missionsMainContainer');
-
-    // Options for the observer (which mutations to observe)
-    const config = { attributes: true, childList: true, subtree: true };
+    $(document).ready(()=>{
+		$(document).ajaxComplete((event,xhr,settings) => {
+			if (settings.url.search("missions") != -1)
+				callback();
+		});
+	});
 
     // Callback function to execute when mutations are observed
-    const callback = (mutationsList, observer) => {
+    let locked = false;
+    const callback = () => {
+        if (locked) return;
+        locked = true;
         let focus = $("#missionsMainContainer > .giver-cont-wrap > div[id^=mission]");
         let load = [];
         focus.each((i,e)=>{
@@ -113,12 +119,6 @@
                 error(e);
             });
     };
-
-    // Create an observer instance linked to the callback function
-    const observer = new MutationObserver(callback);
-
-    // Start observing the whole document for mutations
-    observer.observe(targetNode, config);
 
     const sendTo = load=>{
         console.log(load);
