@@ -101,7 +101,7 @@
             sendTo(load).then(e=>{
                 if (e.success) {
                     hint(observer,e.known);
-                    stor.setItem(key,JSON.stringify(test.concat(e.completed).filter((e,i,s)=>s.indexOf(e) === i)));
+                    stor.setItem(key,JSON.stringify(JSON.parse(test).concat(e.completed).filter((e,i,s)=>s.indexOf(e) === i)));
                 } else {
                     error(e);
                 }
