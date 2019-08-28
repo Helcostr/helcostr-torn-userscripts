@@ -3,6 +3,7 @@
 // @version      1.0
 // @description  Parse the Torn Territory War Report into a CSV File
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
+// @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_ter_report.user.js
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/war.php?step=warreport*
 // @grant        none
