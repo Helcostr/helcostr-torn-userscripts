@@ -71,13 +71,13 @@
                         focus = focus.find("a.name");
                         let name = focus.data("placeholder");
 
-                        if (name.length > 0) { //Parser for honor bar
+                        if (typeof name == "undefined") { //Parser for plaintext
+                            row.push(`="${focus.text()}"`);
+                            row.push(parseInt(/XID=(\d+)/.exec(focus.attr("href"))[1]));
+                        } else { //Parser for honor bar
                             let reg = /(\S+)\s\[(\d+)\]/.exec(name);
                             row.push(`="${reg[1]}"`);
                             row.push(parseInt(reg[2]));
-                        } else { //Parser for plaintext
-                            row.push(`="${focus.text()}"`);
-                            row.push(parseInt(/XID=(\d+)/.exec(focus.attr("href"))));
                         }
                     } else //All other data (should be numbers)
                         row.push(parseInt(focus.text().replace(/\D/g,'')));
