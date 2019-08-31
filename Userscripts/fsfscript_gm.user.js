@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Faction Steadfast Tracker (Greasemonkey)
-// @author       Echoblast53
+// @author       Helcostr [1934501]
 // @version      2.2
 // @description  Track steadfast changes for my faction
 // @match        https://www.torn.com/factions.php?step=your*
@@ -116,5 +116,5 @@
 
 		}
 	});
-	console.log("Running FSF -Echoblast53");
+	console.log("Running FSF -Helcostr");
 })();

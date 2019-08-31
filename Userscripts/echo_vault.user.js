@@ -2,7 +2,7 @@
 // @name         Torn Property Vault Tracker
 // @version      1.2
 // @description  Infinitly Increase Memory of Vault
-// @author       Echoblast53
+// @author       Helcostr [1934501]
 // @match        https://www.torn.com/properties.php
 // @grant        GM_getValue
 // @grant        GM_setValue

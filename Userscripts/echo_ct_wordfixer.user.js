@@ -2,9 +2,9 @@
 // @name        Word Fixer Assist (2018)
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
-// @author      echoblast53 [1934501]
+// @author      helcostr [1934501]
 // @version     1.11.0
-// @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
+// @updateURL   https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
 // @supportURL  https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @grant       none
 // @run-at      document-start

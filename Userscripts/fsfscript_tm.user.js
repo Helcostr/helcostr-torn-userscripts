@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Faction Steadfast Tracker (Tampermonkey)
-// @author       Echoblast53
+// @author       Helcostr [1934501]
 // @version      2.1
 // @description  Track steadfast changes for the good of the faction
 // @match        https://www.torn.com/factions.php?step=your*
@@ -117,5 +117,5 @@
 
 		}
 	});
-	console.log("Running FSF -Echoblast53");
+	console.log("Running FSF -Helcostr");
 })();

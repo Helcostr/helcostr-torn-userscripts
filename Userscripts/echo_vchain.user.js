@@ -2,11 +2,11 @@
 // @name         Torn Vocal Chainerz
 // @version      0.5
 // @description  Speak up when 1 minute is left on the Torn Chain
-// @author       Helcostr
+// @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
 // @grant        none
 // @run-at      document-start
-// @updateURL   https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_vchain.user.js
+// @updateURL   https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_vchain.user.js
 // ==/UserScript==
 (function() {
     'use strict';

@@ -3,7 +3,7 @@
 // @version      1.4
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
-// @updateURL    https://github.com/Echoblast53/echoblast53-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
+// @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/loader.php?sid=missions
 // @grant        GM_xmlhttpRequest
