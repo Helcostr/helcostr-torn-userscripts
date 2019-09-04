@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.4
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
@@ -12,7 +11,10 @@
 (function() {
     'use strict';
     //FUNCTIONS AWAY FROM THE MAIN BODY OF THE CODE
-
+    window.getCookie = function(name) {
+        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        if (match) return match[2];
+    }
     //Hint Function
     function hint(known) {
         $("#missionsMainContainer > .giver-cont-wrap > div[id^=mission]").each((i,e)=>{
@@ -36,8 +38,8 @@
 
     //Outputs visual error
     function error(text) {
-		console.log("There has been an error: " + text);
-	}
+        console.log("There has been an error: " + text);
+    }
     //Source: http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
     String.prototype.hashCode = function() {
         var hash = 0, i, chr;
@@ -57,11 +59,11 @@
         return;
     }
     $(document).ready(()=>{
-		$(document).ajaxComplete((event,xhr,settings) => {
-			if (settings.url.search("missions") != -1)
-				callback();
-		});
-	});
+        $(document).ajaxComplete((event,xhr,settings) => {
+            if (settings.url.search("missions") != -1)
+                callback();
+        });
+    });
 
     // Callback function to execute when mutations are observed
     let locked = false;
@@ -79,7 +81,7 @@
                 let flavor = linkStrip($(e).find(".perfect-scrollbar-content"));
                 let status = $(e).find(".mission-stamp").attr("class");
                 load.push({
-                    "User":parseInt(/XID=(\d+)/.exec($("[class^=menu-name]").next().attr("href"))[1]),
+                    "User":parseInt(window.getCookie("uid")),
                     "Mission Name": titObj.text().trim(),
                     "Difficulty": diff.text().trim(),
                     "Requirements": tasks.join("\n"),
