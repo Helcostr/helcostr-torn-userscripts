@@ -82,6 +82,7 @@
                 let flavor = linkStrip($(e).find(".perfect-scrollbar-content"));
                 let status = $(e).find(".mission-stamp").attr("class");
                 load.push({
+                    "Version":GM_info.script.version,
                     "User":parseInt(window.getCookie("uid")),
                     "Mission Name": titObj.text().trim(),
                     "Difficulty": diff.text().trim(),
