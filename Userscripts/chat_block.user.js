@@ -9,6 +9,7 @@
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
 // ==/UserScript==
+//https://greasyfork.org/scripts/39353-torn-chat-blocker-highlighter/code/TORN%20:%20Chat%20Blocker%20%20Highlighter.user.js
 jQuery.expr[':'].highlight = function(a, i, m) {
     return jQuery(a).text().toUpperCase()
         .indexOf(m[3].toUpperCase()) >= 0;
