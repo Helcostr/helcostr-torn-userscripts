@@ -2,7 +2,8 @@
 // @name         Competition Overseas
 // @version      0.1
 // @description  Highlight teams overseas
-// @author       You
+// @author       Helcostr [1934501]
+// @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/comp_travel.user.js
 // @match        https://www.torn.com/index.php?page=people*
 // @grant        GM_addStyle
 // ==/UserScript==
