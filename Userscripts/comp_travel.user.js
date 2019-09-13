@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Competition Overseas
-// @version      0.2
+// @version      0.3
 // @description  Highlight teams overseas
 // @author       Helcostr [1934501]
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/comp_travel.user.js
@@ -35,24 +35,29 @@
 	background-image: url(/images/v2/competition/elimination/banners/sigils/38_keyboard_warriors.png);
 }
 .hel_highlite.millennials {
-	/*background:red;*/
 	background-image: url(/images/v2/competition/elimination/banners/sigils/40_millennials.png);
+background-position: 0px -50px;
 }
 .hel_highlite.trolls {
 	/*background:red;*/
 	background-image: url(/images/v2/competition/elimination/banners/sigils/12_trolls.png);
+background-position: 0px -50px;
 }
 .hel_highlite.lumberjacks {
 	/*background:red;*/
 	background-image: url(/images/v2/competition/elimination/banners/sigils/32_lumberjacks.png);
-}
-.hel_highlite.revengers {
-	/*background:#DDA0DD;*/
-	background-image: url(/images/v2/competition/elimination/banners/sigils/37_revengers.png);
+
 }
 .hel_highlite.dream-team {
 	/*background:#90EE90;*/
 	background-image: url(/images/v2/competition/elimination/banners/sigils/41_dream_team.png);
+background-position: 0px -30px;
+}
+.hel_highlite{
+background-position: 0px -25px;
+}
+.level,.status,a.user{
+background:white;
 }
 `);
 
