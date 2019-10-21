@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Faction Last Active
 // @namespace    namespace
-// @version      0.0.4
+// @version      0.0.5
 // @description  Faction Last Active script written by tos (branch off of 0.8. Source: https://greasyfork.org/en/scripts/370102-faction-last-active)
 // @author       Helcostr [1934501] (maintainer), tos [1976582], LordBusiness [2052465]
 // @connect      api.torn.com
@@ -78,7 +78,7 @@ const add_toggle = node => {
   iconsTitle.insertAdjacentHTML('beforeend', `<i class="last_action_icon right"></i>`)
   node.querySelector('.last_action_icon').addEventListener('click', () => { toggleLastAction(iconsTitle, memberUL) })
   for (const li of memberUL.children) {
-    const memberID = li.querySelector('.kick-yes').getAttribute('data-id')
+    const memberID = /XID=(\d+)/.exec(li.querySelector('.user.name').getAttribute('href'))[1]
     li.querySelector('.member-icons #iconTray').insertAdjacentHTML('afterend', `<div class="last-action" data-member-id="${memberID}"></div>`)
   }
 }
