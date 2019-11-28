@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         Faction Last Active
 // @namespace    namespace
-// @version      0.0.5
+// @version      0.1.0
 // @description  Faction Last Active script written by tos (branch off of 0.8. Source: https://greasyfork.org/en/scripts/370102-faction-last-active)
 // @author       Helcostr [1934501] (maintainer), tos [1976582], LordBusiness [2052465]
+// @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/faction_last_active.user.js
 // @connect      api.torn.com
 // @match        *.torn.com/factions.php*
 // @run-at       document-end
@@ -58,7 +59,7 @@ const toggleLastAction = (iconsTitle, memberUL) => {
       for (const li of memberUL.children) {
         const lastActionDIV = li.querySelector('.last-action'),
               memberID = lastActionDIV.getAttribute('data-member-ID'),
-              lastAction = res.members[memberID].last_action
+              lastAction = res.members[memberID].last_action.relative
         lastActionDIV.innerText = lastAction
         if (lastAction.includes('minute')) lastActionDIV.classList.add('ftGreen')
         else if (lastAction.includes('hour')) lastActionDIV.classList.add(parseInt(lastAction.split(' ')[0]) < 12 ? 't-green' : 'ftGold')
