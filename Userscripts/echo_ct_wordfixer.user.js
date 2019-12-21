@@ -2,8 +2,8 @@
 // @name        Word Fixer Assist (2018)
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
-// @author      helcostr [1934501]
-// @version     1.11.0
+// @author      Helcostr [1934501]
+// @version     1.12.0
 // @updateURL   https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
 // @supportURL  https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @grant       none
@@ -56,8 +56,8 @@ function miniGameAction(json,payload) {
 
 function openGame() {
     gameStart = true;
-    $("#christmastownroot").after(`
-        <div class="m-top10 m-bottom10" id="wordFixSolve" style="width:324px; float: left; text-transform: capitalize; padding: 7px 0px;">
+    $("#ct-wrap").before(`
+        <div class="m-top10 m-bottom10" id="wordFixSolve" style="width:324px; text-transform: capitalize; padding: 7px 0px;">
             <div aria-level="5" class="title-red top-round" role="heading">
                 <i class="ct-christmastown-icon">
                 </i>
