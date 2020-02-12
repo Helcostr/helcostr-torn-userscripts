@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.5
+// @version      1.5.1
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/loader.php?sid=missions
+// @run-at       document-body
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
@@ -56,7 +57,7 @@
     //MAIN BODY OF CODE!!!!
     const key = "HCS_MissAssHash";
     if (typeof $ != "function") {
-        error("JQuery Missing. This is a critical error");
+        alert("JQuery Missing. This is a critical error. Contact Helcostr[1934501] for more information.");
         return;
     }
     $(document).ready(()=>{
