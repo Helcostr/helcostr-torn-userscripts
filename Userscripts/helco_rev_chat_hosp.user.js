@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Revive Chat Hosp
-// @version      1.0
+// @version      1.0.1
 // @description  Opens chat for hospitalized people (click on reason)
 // @supportURL   https://www.torn.com/messages.php?p=compose&XID=1934501
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_rev_chat_hosp.user.js
@@ -10,6 +10,8 @@
 // ==/UserScript==
 (function() {
     'use strict';
+    alert("WARNING THE USERSCRIPT 'REVIVE CHAT HOSP' APARENTLY VIOLATES GAME RULES. I RECOMMEND TO NOT USE THIS SCRIPT ANYMORE (give your piece of mind to suggestions forum if you want this feature back: i am tired for fighting for my rights)");
+    
     // Select the node that will be observed for mutations
     const targetNode = document.querySelector('ul.user-info-list-wrap');
 
