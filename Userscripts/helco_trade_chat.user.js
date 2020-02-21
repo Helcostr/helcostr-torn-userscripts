@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Trade Chat
-// @version      1.0.1
+// @version      1.0.2
 // @description  Opens chat for trades (click on logs)
 // @supportURL   https://www.torn.com/messages.php?p=compose&XID=1934501
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_trade_chat.user.js
@@ -10,7 +10,6 @@
 // ==/UserScript==
 (function() {
     'use strict';
-    alert("WARNING THE USERSCRIPT 'TRADE CHAT' APARENTLY VIOLATES GAME RULES. I RECOMMEND TO NOT USE THIS SCRIPT ANYMORE (give your piece of mind to suggestions forum if you want this feature back: i am tired for fighting for my rights)")
     // Select the node that will be observed for mutations
     const targetNode = document.querySelector('#trade-container');
 
