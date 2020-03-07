@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.5.1
+// @version      1.5.2
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/loader.php?sid=missions
 // @run-at       document-body
+// @require      http://code.jquery.com/jquery-3.4.1.min.js
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
