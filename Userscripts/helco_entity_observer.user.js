@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Historical API Loader
-// @version      0.2
+// @version      0.3
 // @description  Provide IDs of any active entity (faction/player) to Helcostr's tracker
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_entity_observer.user.js
 // @author       Helcostr [1934501]
@@ -61,7 +61,7 @@ setTimeout(()=> {
         });
     }
     let data = $('a[href*="factions.php?step=profile&ID="], a[href*="profiles.php?XID="]').get()
-        .map(e=>[e.pathname[1],parseInt(/(\d+)/.exec(e.search)[1]),true])
+        .map(e=>[e.pathname[1],parseInt(/(\d+)/.exec(e.search)[1]),true,''])
         .filter((curr, index, thisArray) => thisArray.findIndex(each => each[0] == curr[0] && each[1] == curr[1]) === index);
     sendTo(data).then(console.log).catch(console.warn);
 },10000);
