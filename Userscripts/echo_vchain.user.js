@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Vocal Chainerz
-// @version      0.5
+// @version      0.6
 // @description  Speak up when 1 minute is left on the Torn Chain
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -26,20 +26,20 @@
                 let payload = typeof init.body != 'undefined' ? JSON.parse(init.body) : {};
 
                 clone.json().then((response) => {
-                    if (response.wars[0].data.chain.factionID == 8500) {
+                    if (response.wars[0].data.chain.factionID == 11428) {
                         localStorage.setItem("vc_faction_keepalive",(new Date).getTime());
-                        var seconds = response.wars[0].data.chainBar.end;
-                        var recents = response.warDesc.recentAttacks;
+                        let seconds = response.wars[0].data.chainBar.end;
+                        let recents = response.warDesc.recentAttacks;
                         if (seconds < 70) {
-                            if (recents.some(e=> e.result == "None" && e.finishedTimestamp+30000 < response.wars[0].data.chain.end))
+                            if (recents.some(e=> e.result == "None" && e.finishTimestamp+30000 < response.wars[0].data.chain.end))
                                 speak("Pending","vc_faction_assist");
                             warning = true;
                             speak(secToTime(seconds),"vc_faction_main");
                         } else if (warning) {
                             warning = false;
                             speak('Hit Confirmed',"vc_faction_main");
-                        }
-
+                        } else
+                            console.log(response.warDesc);
                     }
                 });
             }
@@ -49,7 +49,7 @@
 
     function speak(text,overlap_key) {
         let time = localStorage.getItem(overlap_key);
-        if (time == null || parseInt(time)+2500<(new Date).getTime()) {
+        if (time == null || parseInt(time)+2500<Date.now()) {
             var msg = new SpeechSynthesisUtterance();
             var voices = window.speechSynthesis.getVoices();
             msg.voice = voices[0]; // Note: some voices don't support altering params
