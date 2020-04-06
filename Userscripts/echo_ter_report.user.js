@@ -111,8 +111,8 @@
             let jsonContent = "data:text/json;charset=utf-8," + JSON.stringify(report);
             saveFile(jsonContent,$(".title-black").text()+".json");
         });
-        buttonSetup("Export To YATA",sendJSON);
-        buttonSetup("API Storage",()=>{error_key("",true)});
+        //buttonSetup("Export To YATA",sendJSON);
+        //buttonSetup("API Storage",()=>{error_key("",true)});
     };
 
     // Generate Report
