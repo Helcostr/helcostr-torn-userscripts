@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Money Display
-// @version      1.0
+// @version      1.1
 // @description  Display Live Cash Anywhere
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -44,7 +44,7 @@
 		for (let i = 3; i>=0; i--) {
 			let solve = int/Math.pow(10,i*3);
 			if (Math.floor(solve)>0)
-				return (neg?"-":"")+ solve.toFixed(3).toString() + ["","k","m","b"][i];
+				return (neg?"-":"")+ solve.toFixed(1).toString() + ["","k","m","b"][i];
 		}
 		return 0;
 	};
