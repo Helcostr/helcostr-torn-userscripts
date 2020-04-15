@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Money Display
-// @version      1.1
+// @version      1.2
 // @description  Display Live Cash Anywhere
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -27,7 +27,10 @@
 	//Object Setup
 	const myObj = $("<a/>").attr("class","t-clear h c-pointer  m-icon line-h24 right last").css("width","auto").on('click',updateKey);
 	const updateObj = cash=>intPretty(cash)!=="-"?myObj.text(`$${intPretty(cash)}`):myObj.text("(ノಠ益ಠ)ノ彡┻━┻");
-	const init = ()=>$("#top-page-links-list > a.last").after(myObj).removeClass("last");
+	const init = ()=>{
+		$("#top-page-links-list > a.last").removeClass("last")
+		$("#top-page-links-list > div.links-footer").before(myObj);
+	};
 
 	//Pretty Numbers
 	const intPretty = int=>{
