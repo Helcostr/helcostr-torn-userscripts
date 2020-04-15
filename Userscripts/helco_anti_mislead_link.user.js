@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Anti Misleading Links
-// @version      0.1
+// @version      0.2
 // @description  Pause links that take you places that don't visually match. (Can work for other websites if you know how it works)
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -20,27 +20,27 @@
                 return false;
         }
     };
+    const mutationEach = e=>{
+        if (e.tagName=="A") {
+            $(e).on('click',anchClick);
+        }
+    }
     // Create an observer instance linked to the callback function
     const observer = new MutationObserver(list=>{
         for(let mutation of list) {
-            mutation.addedNodes.forEach(e=>{
-                if (e.tagName=="A")
-                    $(e).on('click',anchClick);
-            });
+            mutation.addedNodes.forEach(mutationEach);
         }
     });
 
     // Start observing the target node for configured mutations
     observer.observe(document, { childList: true, subtree: true });
     $('a').on('click',anchClick);
-    //https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+
     function validURL(str) {
-        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-                                 '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-                                 '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-                                 '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-                                 '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-                                 '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-        return !!pattern.test(str);
+        for (let domain of domains) {
+            if (str.includes(domain))
+                return true;
+        }
+        return false;
     }
 })();
