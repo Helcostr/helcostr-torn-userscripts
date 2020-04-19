@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Proxima's Armory Detailed
-// @version      0.2
+// @version      0.3
 // @description  Highlight weapons that is missing details (to be sent to Sulsay's database via his ArsonWarehouse addon) BETA
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -36,10 +36,10 @@
 						let data = JSON.parse(xhr.responseText);
 						focus.forEach(id=>{
 							if (data.findIndex(e=>e.armoury_id==id) == -1) {
-								$('[data-armoryid='+id+'],[data-armoury='+id+']').css({backgroundColor: "rgba(229, 76, 25, 0.10)"}).on('click',function(){
+								$('[data-armoryid='+id+'],[data-armoury='+id+']').css({backgroundColor: "rgba(229, 76, 25, 1)"}).on('click',function(){
 									$(this).css({backgroundColor:""});
 								});
-								$('[armouryid='+id+']').parent().css({backgroundColor: "rgba(229, 76, 25, 0.10)"}).on('click',function(){
+								$('[armouryid='+id+']').parent().css({backgroundColor: "rgba(229, 76, 25, 1)"}).on('click',function(){
 									$(this).css({backgroundColor:""});
 								});
 							}
