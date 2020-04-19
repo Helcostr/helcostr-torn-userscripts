@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Proxima's Armory Detailed
 // @version      0.1
-// @description  Highlight weapons that is missing details BETA
+// @description  Highlight weapons that is missing details (to be sent to Sulsay's database via his ArsonWarehouse addon) BETA
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
 // @grant        GM_xmlhttpRequest
