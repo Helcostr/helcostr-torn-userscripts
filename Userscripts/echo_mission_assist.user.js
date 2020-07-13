@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mission Assist
-// @version      1.5.3
+// @version      1.5.4
 // @description  Give user generated hints for Missions
 // @supportURL   https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_mission_assist.user.js
@@ -25,11 +25,11 @@
             let titObj = $(e).find(".title-black").clone();
             titObj.find(".task-difficulty").remove();
             let reduct = known.filter(e=>e[0]==titObj.text().trim());
-            if ($(e).find(".perfect-scrollbar-content > .hint").length==0)
+            if ($(e).find(".max-height-fix.info > .hint").length==0)
                 if (reduct.length != 0) {
-                    $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> "+ reduct[0][1] + "<br><br><b>Hint:</b> " + reduct[0][2] +"</span>");
+                    $(e).find(".max-height-fix.info").append("<span class='hint'><br><br><b>Task:</b> "+ reduct[0][1] + "<br><br><b>Hint:</b> " + reduct[0][2] +"</span>");
                 } else
-                    $(e).find(".perfect-scrollbar-content").append("<span class='hint'><br><br><b>Task:</b> ERROR, PLEASE REPORT<br><br><b>Hint:</b> ERROR, PLEASE REPORT</span>");
+                    $(e).find(".max-height-fix.info").append("<span class='hint'><br><br><b>Task:</b> ERROR, PLEASE REPORT<br><br><b>Hint:</b> ERROR, PLEASE REPORT</span>");
         });
         locked = false;
     }
@@ -77,12 +77,12 @@
         let focus = $("#missionsMainContainer > .giver-cont-wrap > div[id^=mission]");
         let load = [];
         focus.each((i,e)=>{
-            if ($(e).find(".perfect-scrollbar-content > .hint").length==0) {
+            if ($(e).find(".max-height-fix.info > .hint").length==0) {
                 let titObj = $(e).find(".title-black").clone();
                 let diff = titObj.find(".task-difficulty").remove();
                 let tasks = $(e).find("ul.tasks-list > li").toArray().map((e,i)=> (i+1)+". " + linkStrip(e));
                 let id = $(e).find("input[name=missionID]").attr("value");
-                let flavor = linkStrip($(e).find(".perfect-scrollbar-content"));
+                let flavor = linkStrip($(e).find(".max-height-fix.info"));
                 let status = $(e).find(".mission-stamp").attr("class");
                 load.push({
                     "Version":GM_info.script.version,
