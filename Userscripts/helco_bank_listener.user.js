@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Banker Listener
-// @version      0.3
+// @version      0.4
 // @description  Audio notification for mentions of banker in Faction chat
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -22,11 +22,18 @@ let keywords = ["banker",
 wsHook.after = function(event, url, wsObject) {
 	if (url.includes("ws-chat.torn.com")) {
 		let jsonObject = JSON.parse(event.data);
-		jsonObject.data.forEach(e=> {
-			if (e.roomId.includes('Faction:') && e.hasOwnProperty("messageText") && keywords.some(word=>e.messageText.toLowerCase().includes(word)) ) {
-				speak(e.senderName + " typed. " + e.messageText,"helco_bank_watcher");//Current sentence: "Sender typed: insert_message_here"
-			}
-		});
+		try {
+			jsonObject.data.forEach(e=> {
+				if ('roomId' in e && e.roomId.includes('Faction:') && 'messageText' in e && keywords.some(word=>e.messageText.toLowerCase().includes(word)) ) {
+					speak(e.senderName + " typed. " + e.messageText,"helco_bank_watcher");//Current sentence: "Sender typed: insert_message_here"
+					//speak(e.messageText.match(new RegExp('('+keywords.join('|')+')', 'i'))[1],"helco_bank_watcher")//Key word msg
+				}
+			});
+		} catch (err) {
+			console.error(err);
+			console.error("OBJ:",jsonObject);
+			return event;
+		}
 	}
 	return event;
 }
