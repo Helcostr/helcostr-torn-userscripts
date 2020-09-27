@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn Banker Listener
-// @version      0.2
+// @version      0.3
 // @description  Audio notification for mentions of banker in Faction chat
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
@@ -43,7 +43,6 @@ function speak(text,overlap_key) {
 
 		msg.lang = 'en-US';
 		msg.text = text;
-		speechSynthesis.cancel();
 		speechSynthesis.speak(msg);
 		localStorage.setItem(overlap_key,(new Date).getTime());
 	}
