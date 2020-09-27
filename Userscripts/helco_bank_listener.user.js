@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         Torn Banker Listener
-// @version      0.4
+// @version      0.5
 // @description  Audio notification for mentions of banker in Faction chat
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/*
+// @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_bank_listener.user.js
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
