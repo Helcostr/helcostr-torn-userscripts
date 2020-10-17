@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn OC Mail Template
-// @version      0.3
+// @version      0.4
 // @description  Auto fill mail with OC related contents
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/messages.php
@@ -50,7 +50,7 @@
 		let urlParam = getUrlVars();
 		switch (urlParam.template) {
 			case "oc_mail":
-				template = oc_mail(urlParam.username,urlParam.crime_id,urlParam.cut)
+				template = oc_mail(urlParam.username,urlParam.crimeID,urlParam.cut)
 		}
 		if (template === null)
 			return
