@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Torn OC Mail Template
-// @version      0.1
+// @version      0.2
 // @description  Auto fill mail with OC related contents
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/messages.php
@@ -10,8 +10,6 @@
 
 (function() {
     'use strict';
-	let urlParam = getUrlVars();
-
 	// Create an observer instance linked to the callback function
 	const observer = new MutationObserver(callback);
 
@@ -27,7 +25,7 @@
 						mail();
 					} else if ('classList' in e && e.classList.contains("crime-result") && e.dataset.crime == 8) {
 						let amt = parseInt($(".make-wrap p:contains(made)").text().replace(/[^\d]/g,""));
-						let crimeID = urlParam.crimeID;
+						let crimeID = getUrlVars().crimeID;
 						$(".t-blue-cont b:contains(Participants: ) a").each((i,e)=>{
 							let user = getUrlVars($(e).attr("href"));
 							let percent = (i==0)?.3:.2;
