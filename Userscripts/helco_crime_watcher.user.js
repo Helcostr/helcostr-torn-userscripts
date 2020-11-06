@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Crime Watcher
-// @version      2.2
+// @version      2.3
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/crimes.php*
@@ -16,7 +16,7 @@
 /*eslint no-unused-vars: 0*/
 (function() {
 	'use strict';
-	let $ = unsafeWindow.$ || $;
+	let $ = unsafeWindow.$;
 
 	//My Gets and Sets
 	const getKey = ()=>GM_getValue("key","");
