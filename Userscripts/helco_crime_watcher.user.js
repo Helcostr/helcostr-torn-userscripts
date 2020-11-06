@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Crime Watcher
-// @version      2.4
+// @version      2.5
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/crimes.php*
@@ -86,7 +86,7 @@
 					if (storeKey) localStorage.removeItem(storeKey);
 				} else if (x.status === 400 || x.status === 500){
 					if (!storeKey) takeCare();
-					alert("😱😱😱 Contact Helcostr with this message: "+x.status+" on Crime Watcher "+JSON.parse(x.responseText).reason+" 😱😱😱");
+					console.warn("😱😱😱 Contact Helcostr with this message: "+x.status+" on Crime Watcher "+JSON.parse(x.responseText).reason+" 😱😱😱");
 				}
 			}
 		});
