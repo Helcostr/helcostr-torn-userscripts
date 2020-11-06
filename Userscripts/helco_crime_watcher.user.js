@@ -123,7 +123,7 @@
 	//API Preload
 	if (getPlayerData() === null)
 		api("basic").then(d=>{
-			if ("error" in d && confirm(d.error.error+" Get API Key again?"))
+			if ("error" in d && confirm(d.error.error+" for Crime Watcher. Get API Key again?"))
 				window.location.href="https://www.torn.com/preferences.php#tab=api"; //Use player input to go to the prefernce page
 			else
 				setPlayerData(d);
