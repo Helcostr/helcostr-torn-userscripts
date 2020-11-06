@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Crime Watcher
-// @version      2.3
+// @version      2.4
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
 // @match        https://www.torn.com/crimes.php*
