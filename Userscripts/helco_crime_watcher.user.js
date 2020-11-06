@@ -85,7 +85,7 @@
 				if (x.status === 200) {
 					if (storeKey) localStorage.removeItem(storeKey);
 				} else if (x.status === 400 || x.status === 500)
-					alert("😱😱😱 Contact Helcostr with this message: "+x.status+" on Crime Watcher "+JSON.parse(x.responseText).+" 😱😱😱");
+					alert("😱😱😱 Contact Helcostr with this message: "+x.status+" on Crime Watcher "+JSON.parse(x.responseText).reason+" 😱😱😱");
 			}
 		});
 	};
