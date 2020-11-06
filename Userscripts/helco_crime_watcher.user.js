@@ -60,8 +60,10 @@
 		const takeCare = ()=>{
 			if (!storeKey)localStorage.setItem("crime_watch:"+Date.now(),JSON.stringify(load));
 		};
-		if (perks === null)
+		if (perks === null) {
 			takeCare();
+			return;
+		}
 		if (load.player !== basic.player_id) {
 			takeCare();
 			setKey("");
@@ -83,7 +85,7 @@
 				if (x.status === 200) {
 					if (storeKey) localStorage.removeItem(storeKey);
 				} else if (x.status === 400 || x.status === 500)
-					console.warn("😱😱😱 Contact Helcostr with this message: "+x.status+" on Crime Watcher 😱😱😱");
+					alert("😱😱😱 Contact Helcostr with this message: "+x.status+" on Crime Watcher "+JSON.parse(x.responseText).+" 😱😱😱");
 			}
 		});
 	};
