@@ -3,7 +3,7 @@
 // @description Pull up solutions to the word fixer game.
 // @match       https://www.torn.com/christmas_town.php
 // @author      Helcostr [1934501]
-// @version     1.12.0
+// @version     1.13.0
 // @updateURL   https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/echo_ct_wordfixer.user.js
 // @supportURL  https://www.torn.com/messages.php#/p=compose&XID=1934501
 // @grant       none
@@ -20,10 +20,10 @@ window.fetch = async (input, init) => {
             if (typeof init.body != 'undefined')
                 payload = JSON.parse(init.body);
             const json = await clone.json();
-			miniGameAction(json,payload);
-		} else if (response.url.search('q=move') != -1 && gameStart && (await response.clone().json()).success) {
-			closeGame();
-		}
+            miniGameAction(json,payload);
+        } else if (response.url.search('q=move') != -1 && gameStart && (await response.clone().json()).success) {
+            closeGame();
+        }
 
     }
     return response;
