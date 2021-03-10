@@ -3,6 +3,7 @@
 // @version      2.6
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
+// @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_crime_watcher.user.js
 // @match        https://www.torn.com/crimes.php*
 // @match        https://www.torn.com/preferences.php*
 // @grant        GM_xmlhttpRequest
