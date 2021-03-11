@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Crime Watcher
-// @version      2.6
+// @version      2.7
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_crime_watcher.user.js
@@ -38,7 +38,7 @@
     //Api Fetching
     const api = selections=>{
         return new Promise((res,rej)=>{
-            const url = 'https://api.torn.com/user/?selections='+selections+'&key=';
+            const url = 'https://api.torn.com/user/?comment=usCriWatch&selections='+selections+'&key=';
             GM_xmlhttpRequest({
                 method:'GET',
                 url:url+getKey(),
@@ -94,7 +94,7 @@
     };
     const getData = data=>{
         const cache = getCache();
-        const addNerve = [].concat(...Object.values(cache)).filter(e=>/maximum nerve/i.test(e)).map(e=>parseInt(e.replace(/\D/g,'')));
+        const addNerve = ['0maximum nerve'].concat(...Object.values(cache)).filter(e=>/maximum nerve/i.test(e)).map(e=>parseInt(e.replace(/\D/g,'')));
         const url = `https://elimination.me/api/jts/crimes/statistics?crimes=${data.join('|')}&nnb=${cache.maximum_nerve-addNerve.reduce((a,c)=>a+c)||''}`;
         GM_xmlhttpRequest({
             method:'GET',
