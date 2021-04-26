@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Block News
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Block news while playing to allow more data into the API bot
 // @author       Helcostr [1934501]
 // @run-at       document-start
