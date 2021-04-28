@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Crime Watcher
-// @version      2.7
+// @version      2.8
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_crime_watcher.user.js
@@ -65,10 +65,10 @@
             takeCare();
             return;
         }
-        if (load.player !== basic.player_id) {
+        if (!basic?.error.error && load.player !== basic.player_id) {
             takeCare();
             setKey('');
-            if(window.confirm('Wrong API Key. Fetch now?'))
+            if(window.confirm(`Wrong API Key for payload for the user id: "${load.player}" (api player id is "${basic.player_id}"). Fetch now?`))
                 window.location.href='https://www.torn.com/preferences.php#tab=api'; //Use player input to go to the prefernce page
             return;
         }
@@ -151,7 +151,7 @@
     //API Preload
     if (getPlayerData() === null)
         api('basic').then(d=>{
-            if ('error' in d && confirm(d.error.error+' Get API Key again?'))
+            if ('error' in d && confirm(d.error.error + ' Get API Key again?'))
                 window.location.href='https://www.torn.com/preferences.php#tab=api'; //Use player input to go to the prefernce page
             else
                 setPlayerData(d);
