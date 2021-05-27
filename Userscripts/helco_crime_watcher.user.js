@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Crime Watcher
-// @version      2.8
+// @version      2.9
 // @description  Watch crimes done in Torn (written for Tampermonkey)
 // @author       Helcostr [1934501]
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_crime_watcher.user.js
@@ -95,7 +95,8 @@
     const getData = data=>{
         const cache = getCache();
         const addNerve = ['0maximum nerve'].concat(...Object.values(cache)).filter(e=>/maximum nerve/i.test(e)).map(e=>parseInt(e.replace(/\D/g,'')));
-        const url = `https://elimination.me/api/jts/crimes/statistics?crimes=${data.join('|')}&nnb=${cache.maximum_nerve-addNerve.reduce((a,c)=>a+c)||''}`;
+        const nnb = cache.maximum_nerve-addNerve.reduce((a,c)=>a+c)||'';
+        const url = `https://elimination.me/api/jts/crimes/statistics?crimes=${data.join('|')}&nnb=${nnb}`;
         GM_xmlhttpRequest({
             method:'GET',
             url,
@@ -114,7 +115,7 @@
                     $(`input[type=radio][name=crime][value=${key}]`)
                         .closest('ul')
                         .find('.points')
-                        .append(...elements,'|&nbsp;Total:&nbsp;',v.total);
+                        .append(...elements,'|&nbsp;Total:&nbsp;',v.total,'|NNB:',nnb);
                 });
             }
         });
