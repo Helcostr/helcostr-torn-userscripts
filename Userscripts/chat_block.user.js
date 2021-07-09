@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TORN : Chat Blocker & Highlighter
 // @namespace    chatblocker
-// @version      0.1beta
+// @version      0.3beta
 // @description  Chat Blocker. Add spammer/scammer/troller to block them appear in all chat(company/faction/global/trade). And Highlighter
 // @author       Mafia[610357] (modified by Helcostr [1934501] off of 4.5)
 // @match        https://www.torn.com/*
