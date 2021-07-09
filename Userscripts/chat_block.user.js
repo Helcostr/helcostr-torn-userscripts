@@ -21,8 +21,8 @@ GM_addStyle(`.licolor input { width: 15px; height: 18px; margin: 7px; background
     'use strict';
     var chatblocklist = JSON.parse(localStorage.chatblocklist || '[]');
     var chatcolor = JSON.parse(localStorage.chatcolor || '{"selfcolor":"#0080c0","highlight":"#ffffbf"}');
-    var uid = $("script[src*='builds/chats/chat']").attr("uid");
-    var name = $("script[src*='builds/chats/chat']").attr("name");
+    var uid = $("script[src*='builds/chat/']").attr("uid");
+    var name = $("script[src*='builds/chat/']").attr("name");
 
     if(!chatcolor.uid || chatcolor.name != name){
         chatcolor.uid = uid;
