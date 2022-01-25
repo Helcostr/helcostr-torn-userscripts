@@ -57,13 +57,17 @@ const toggleLastAction = (iconsTitle, memberUL) => {
         get_api().then(res => {
                 if (res.error && res.error.code === 2) alert(`Invalid API key found in ${GM.info.script.name} script. Please update it on line 14.`)
                 for (const li of memberUL.children) {
-                    const lastActionDIV = li.querySelector('.last-action'),
-                        memberID = lastActionDIV.getAttribute('data-member-ID'),
-                        lastAction = res.members[memberID].last_action.relative
-                    lastActionDIV.innerText = lastAction
-                    if (lastAction.includes('minute')) lastActionDIV.classList.add('ftGreen')
-                    else if (lastAction.includes('hour')) lastActionDIV.classList.add(parseInt(lastAction.split(' ')[0]) < 12 ? 't-green' : 'ftGold')
-                    else if (lastAction.includes('day')) lastActionDIV.classList.add(parseInt(lastAction.split(' ')[0]) < 7 ? 'ftDarkGold' : 't-red')
+                    const lastActionDIV = li.querySelector('.last-action')
+
+                    if (lastActionDIV) {
+                        const memberID = lastActionDIV.getAttribute('data-member-id'),
+                            lastAction = res.members[memberID].last_action.relative
+
+                        lastActionDIV.innerText = lastAction
+                        if (lastAction.includes('minute')) lastActionDIV.classList.add('ftGreen')
+                        else if (lastAction.includes('hour')) lastActionDIV.classList.add(parseInt(lastAction.split(' ')[0]) < 12 ? 't-green' : 'ftGold')
+                        else if (lastAction.includes('day')) lastActionDIV.classList.add(parseInt(lastAction.split(' ')[0]) < 7 ? 'ftDarkGold' : 't-red')
+                    }
                 }
             })
             .catch(err => console.log(err))
