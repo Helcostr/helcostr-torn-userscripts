@@ -3,6 +3,7 @@
 // @version      2.0
 // @description  Track Entries 
 // @author       Helcostr [1934501]
+// @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/helco_vault.user.js
 // @match        https://www.torn.com/properties.php
 // @require      https://unpkg.com/dexie/dist/dexie.js
 // @grant        GM_registerMenuCommand
@@ -45,7 +46,7 @@
         })
     });
     GM_registerMenuCommand('Display Total', async ()=>{
-      const form = new Intl.NumberFormat(,);
+      const form = new Intl.NumberFormat();
       const users = await getTotal(db);
       const total = Object.values(users).reduce((a,b)=>a+b,0);
       let output = '';
