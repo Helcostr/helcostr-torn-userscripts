@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Faction Last Active
 // @namespace    namespace
-// @version      0.3.0
+// @version      0.4.0
 // @description  Faction Last Active script written by tos (branch off of 0.8. Source: https://greasyfork.org/en/scripts/370102-faction-last-active)
 // @author       Helcostr [1934501] (maintainer), tos [1976582], LordBusiness [2052465]
 // @updateURL    https://github.com/Helcostr/helcostr-torn-userscripts/raw/master/Userscripts/faction_last_active.user.js
@@ -32,8 +32,14 @@ GM_addStyle(`
   }
 `)
 
-const factionInfoWrap = document.querySelector('.faction-info'),
-    factionID = factionInfoWrap ? factionInfoWrap.getAttribute('data-faction') : ''
+// Gets Faction Info via Faction Warfare link
+function getFactionInfo() {
+    const input = $("#view-wars").parent().attr('href');
+    let regex = /\/page\.php\?sid=factionWarfare#\/ranked\/(\d+)/i;
+    return regex.exec(input)?.[1]||'';
+}
+
+const factionID = getFactionInfo();
 
 const myFetch = url => {
     return new Promise((resolve, reject) => {
