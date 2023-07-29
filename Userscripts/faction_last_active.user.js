@@ -64,7 +64,7 @@ const toggleLastAction = (iconsTitle, memberUL) => {
     if (iconsTitle.innerText === 'Icons') {
         iconsTitle.childNodes[0].nodeValue = 'Last Action'
         get_api().then(res => {
-            if (res.error && res.error.code === 2) alert(`Invalid API key found in ${GM.info.script.name} script. Please update it on line 14.`)
+            if (res.error && res.error.code === 2) alert(`Invalid API key found in ${GM.info.script.name} script. Please update it on line 16.`)
             let index = 0;
             for (const li of memberUL.children) {
                 const lastActionDIV = li.querySelector('.last-action')
